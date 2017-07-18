@@ -53,7 +53,7 @@ window.messageBus.onMessage = function(event) {
         {text: data.lie.toUpperCase(), author: data.playerName, chosenBy: [], isCorrect: false, isRevealing: false, isShowingInfo: false}); 
       // Prematurely transition to acceptingAnswers state if all players have entered lies
       if ((vm.answers.length - 2) >= vm.players.length) {
-        fsm.acceptLies();
+        fsm.acceptAnswers();
       }
       break;
     case "choose answer":
