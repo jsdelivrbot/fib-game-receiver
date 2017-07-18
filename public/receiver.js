@@ -51,6 +51,9 @@ window.messageBus.onMessage = function(event) {
     case "submit lie":
       vm.answers.push(
         {text: data.lie.toUpperCase(), author: data.playerName, chosenBy: [], isCorrect: false, isRevealing: false, isShowingInfo: false}); 
+      // Prematurely transition to acceptingAnswers state if all players have entered lies
+      if ((vm.answers.length - 2) >= vm.players.length) {
+        fsm.acceptLies();
       break;
     case "choose answer":
       vm.answers[data.answerPos].chosenBy.push(data.chooser);
