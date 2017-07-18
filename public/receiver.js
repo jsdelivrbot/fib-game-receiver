@@ -53,6 +53,7 @@ window.messageBus.onMessage = function(event) {
         {text: data.lie.toUpperCase(), author: data.playerName, chosenBy: [], isCorrect: false, isRevealing: false, isShowingInfo: false}); 
       // Prematurely transition to acceptingAnswers state if all players have entered lies
       if ((vm.answers.length - 2) >= vm.players.length) {
+        clearTimeout(acceptLiesTimer);
         fsm.acceptAnswers();
       }
       break;
@@ -64,6 +65,7 @@ window.messageBus.onMessage = function(event) {
         chosenCount += vm.answers[i].chosenBy.length; 
       }
       if (chosenCount >= vm.players.length) {
+        clearTimeout(acceptAnswersTimer);
         fsm.reveal();
       }
       break;

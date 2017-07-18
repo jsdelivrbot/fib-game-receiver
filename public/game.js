@@ -106,7 +106,7 @@ var fsm = StateMachine.create({
       var answersReadyMessage = {"action": "answers ready", "answers": vm.answers};
       window.messageBus.broadcast(JSON.stringify(answersReadyMessage));
       // simulating players choosing answers
-      setTimeout(function() {
+      var acceptAnswersTimer = setTimeout(function() {
         //vm.answers[1].chosenBy.push(vm.players[0].name);
         //vm.answers[2].chosenBy.push(vm.players[1].name);
         fsm.reveal();
@@ -135,7 +135,7 @@ var fsm = StateMachine.create({
     onacceptLies: function() {
       var newQuestionMessage = {"action": "new question", "question": vm.currQuestion};
       window.messageBus.broadcast(JSON.stringify(newQuestionMessage));
-      setTimeout(function() {
+      var acceptLiesTimer = setTimeout(function() {
         /*vm.answers.push(
           {text: "google", author: vm.players[0].name, chosenBy: [], isCorrect: false, isRevealing: false});
           vm.answers.push(
