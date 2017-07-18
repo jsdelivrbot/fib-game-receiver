@@ -58,6 +58,14 @@ window.messageBus.onMessage = function(event) {
       break;
     case "choose answer":
       vm.answers[data.answerPos].chosenBy.push(data.chooser);
+      // Prematurely transition to revealing state if all players have chosen an answer
+      var chosenCount = 0;
+      for (let i = 0; i < vm.answers.length; i++) {
+        chosenCount += vm.answers[i].chosenBy.length; 
+      }
+      if (chosenCount >= vm.players.length) {
+        fsm.reveal();
+      }
       break;
     case "new game":
       fsm.registerPlayers();
